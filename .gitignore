@@ -1,0 +1,41 @@
+# Python
+# ========================
+# 가상 환경 디렉토리 무시
+.venv/
+venv/
+env/
+
+# 컴파일된 바이트 코드
+__pycache__/
+*.pyc
+*$py.class
+
+# 배포/패키징
+build/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+*.egg-info/
+wheels/
+
+# 로그 및 임시 파일
+*.log
+*.tmp
+*.bak
+
+# 환경 변수 파일 (민감 정보 포함)
+.env
+.flaskenv
+
+# ========================
+# IDE 및 시스템 관련
+# ========================
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# PyCharm (사용하는 경우)
+.idea/
