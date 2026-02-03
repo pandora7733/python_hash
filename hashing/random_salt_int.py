@@ -1,5 +1,6 @@
 import random
 import hashlib
+import time
 
 # 계산 하는데 걸리는 측정 (무작정 대입)
 
@@ -22,6 +23,8 @@ hex_dig = hash_object.hexdigest()
 result = hex_dig
 print("result:", result)
 
+start_time = time.time() # 시작 시간
+
 for i in range(0, 255):
   binary_i = str(bin(i)[2:].zfill(8))
   
@@ -32,6 +35,9 @@ for i in range(0, 255):
     hex_test = hash_test.hexdigest()
     if result == hex_test:
       print("hex_test:", hex_test)
+      end_time = time.time() # 종료 시간
+      elapsed = end_time - start_time
+      print(f"걸린 시간: {elapsed:.4f}초")
       break
     else:
       continue
