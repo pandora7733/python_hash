@@ -10,5 +10,12 @@
 <code>(로컬 경로)/mine</code>
 </br>
 <code>(로컬 경로)/transactions/new</code>
+body에서 json형식으로
+</br>
+"""{
+  "sender": "sihoopark10",
+  "recipient": "sihoopark100",
+  "amount": 199
+}"""
 </br>
 <code>(로컬 경로)/chain</code>
