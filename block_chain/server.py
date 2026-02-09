@@ -7,7 +7,7 @@ from blockchain import Blockchain
 
 app = Flask(__name__)
 
-node_identifier = str(uuid4()).replace('-', '')
+# node_identifier = str(uuid4()).replace('-', '')
 
 blockchain = Blockchain()
 
@@ -20,11 +20,16 @@ def mine():
 
     proof = blockchain.proof_of_work(last_proof, last_hash)
 
-    blockchain.new_transaction(
-        sender='0',
-        recipient=node_identifier,
-        amount=1
-    )
+    # 고정된 값 삭제
+    # blockchain.new_transaction(
+    #     sender='0',
+    #     recipient=node_identifier,
+    #     amount=1
+    # )
+
+    # 대기 중인 거래가 있는지 확인
+    if not blockchain.current_transactions:
+        return jsonify({'message': 'No transactions to mine. plz do /transactions/new [GET]'}), 400
 
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
