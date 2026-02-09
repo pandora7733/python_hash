@@ -43,17 +43,23 @@ class Blockchain(object):
   def last_block(self):
     return self.chain[-1]
   
-  def proof_of_work(self, last_proof):
+  def proof_of_work(self, last_proof, last_hash):
 
     proof = 0
 
-    while self.valid_proof(last_proof, proof) is False:
+    while self.valid_proof(last_proof, proof, last_hash) is False:
       proof += 1
 
     return proof
   
   @staticmethod
-  def valid_proof(last_proof, proof):
-    guess = str(last_proof * proof).encode()
+  # 실제 블록체인의 해시 생성 방식
+  # sha256(sha256(이전 블록의 해시, 머클 루트, 타임스탬프, 난이도 목표, 버전, 논스))
+  # def valid_proof(last_proof, proof):
+  #   guess = str(last_proof * proof).encode()
+  #   guess_hash = hashlib.sha256(guess).hexdigest()
+  #   return guess_hash[:4] == "0000"
+  def valid_proof(last_proof, proof, last_hash):
+    guess = f'{last_proof}{proof}{last_hash}'.encode() # 반복되던 proof값 수정
     guess_hash = hashlib.sha256(guess).hexdigest()
     return guess_hash[:4] == "0000"

@@ -16,8 +16,9 @@ blockchain = Blockchain()
 def mine():
     last_block = blockchain.last_block
     last_proof = last_block['proof']
+    last_hash = last_block['previous_hash']
 
-    proof = blockchain.proof_of_work(last_proof)
+    proof = blockchain.proof_of_work(last_proof, last_hash)
 
     blockchain.new_transaction(
         sender='0',
@@ -59,7 +60,6 @@ def full_chain():
     }
 
     return jsonify(response), 200
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
